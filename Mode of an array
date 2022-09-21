@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	 cin>>t;
+	 while(t--)
+	 {
+		 int n,k;
+		 cin>>n>>k;
+         int arr[n];
+		 unordered_map<int,int>umap;  
+		 for(int i=0;i<n;i++)
+		 {
+			 cin>>arr[i];
+			 umap[arr[i]]++;
+		 }
+
+		 
+		 if(umap.find(k)!=umap.end())
+		 {auto temp=umap.find(k);
+          int z=temp->second;
+		 int track=0;
+		 if(z>n/2)
+		 cout<<track<<endl;
+		 else
+		 {  
+			 while(z<=n/2)
+			 {
+				 z++;
+				 track++;
+			 }
+			 cout<<track<<endl;
+		 }
+		 }
+	 }
+}
