@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+typedef long long ll;
+ 
+ll n, inp;
+int k, Q;
+string s;
+ 
+struct node
+{
+    ll length, start;
+ 
+    node(ll length, ll start)
+    {
+        this->length = length;
+        this->start = start;
+    }
+ 
+    node(pair<ll, ll> inp)
+    {
+        length = inp.first;
+        start = inp.second;
+ 
+    }
+ 
+    bool operator<(const node &a) const
+    {
+        if (length < a.length)
+            return true;
+        else if (length > a.length)
+            return false;
+        else if (start > a.start)
+            return true;
+        return false;
+    }
+};
+priority_queue<node> q;
+unordered_map<ll, int> m;
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+ 
+    //freopen("seating.inp", "r", stdin);
+    //freopen("seating.out", "w", stdout);
+ 
+    cin >> n >> k >> s;
+    s = " " + s;
+    q.push({n + 1, 0});
+    for (int i = 1; i <= k; i++)
+    {
+        node curr = q.top();
+        q.pop();
+        ll pos = curr.start + (curr.length + (s[i] == 'R' ? 1 : 0)) / 2;
+        m[pos] = i;
+        q.push({pos - curr.start, curr.start});
+        q.push({curr.start + curr.length - pos, pos});
+    }
+ 
+    cin >> Q;
+    for (int i = 0; i < Q; i++)
+    {
+        cin >> inp;
+        if (m.find(inp) != m.end())
+            cout << m[inp];
+        else
+            cout << -1;
+        cout << '\n';
+    }
+ 
+    return 0;
+}
+Language: C++14
