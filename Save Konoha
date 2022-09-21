@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	for(int i=0;i<t;i++)
+	{
+	    int n,z;
+	    cin>>n;
+	    cin>>z;
+	    int a[n];
+	    
+	    for(int j=0;j<n;j++){
+	    cin>>a[j];}
+	    
+	    int count=0;
+	    priority_queue<int>pq(a,a+n);
+	    while(z>0  &&  pq.empty()==false)
+	    {
+	        int r=pq.top();
+	        pq.pop();
+	        z=z-r;
+	        r=r/2;
+	        if(r>0)
+	        pq.push(r);
+	        count++;
+	    }
+	    
+	    if(z>0)
+	    cout<<"Evacuate"<<endl;
+	    else
+	    cout<<count<<endl;
+	}
+	return 0;
+}
