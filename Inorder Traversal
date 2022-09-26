@@ -1,0 +1,12 @@
+void inorder(struct node *root)
+{
+	if(root==0)
+	return ;
+	
+	
+	preorder(root->left);
+	printf("%d",root->data);
+	preorder(root->right);
+	
+	
+}
